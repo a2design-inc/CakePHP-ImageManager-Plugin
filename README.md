@@ -1,0 +1,2 @@
+CakePHP-ImageManager-Plugin
+===========================
