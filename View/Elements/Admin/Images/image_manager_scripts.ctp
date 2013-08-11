@@ -1,0 +1,1 @@
+var imagesUrlBase = '<?php echo $imagesUrlBase; ?>';

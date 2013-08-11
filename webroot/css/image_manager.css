@@ -1,0 +1,77 @@
+.thumbnail {
+    position: relative;
+}
+
+.thumbnail-controls {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: none;
+}
+
+.thumbnail:hover .thumbnail-controls {
+    display: inline-block;
+}
+
+.thumbnail-controls li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 4px;;
+}
+
+.thumbnail-controls i {
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.thumbnail-controls i.icon-remove {
+    background-color: #DA4F49;
+}
+
+.control-panel li button {
+    border: none;
+    background: none;
+}
+
+.file-drop-wrapper {
+    position: relative;
+}
+
+.file-drop {
+    border: 2px dotted #56B4EF;
+    border-radius: 4px;
+    background: #fff;
+    text-align: center;
+    height: 60px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.file-drop span {
+    display: inline-block;
+    line-height: 60px;
+    color: #56B4EF;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.file-drop.active {
+    border-color: #F0AD4E;
+    box-shadow: 0 0 10px #F0AD4E;
+}
+
+.file-drop.active span {
+    color: #F0AD4E;
+}
+
+.file-drop-hover {
+    box-shadow: 0 0 10px #56B4EF;
+}
+
+.images-container {
+    margin-top: 10px;
+}
+
+.images-container .inserted .icon-edit {
+    display: none;
+}
