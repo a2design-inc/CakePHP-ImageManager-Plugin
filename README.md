@@ -5,7 +5,8 @@ CakePHP-ImageManager-Plugin
 *Put this into your Cake's plugin directory*
 
 ### In your model
-  `public $actsAs = array('ImageManager.ImageManager');
+  `
+  public $actsAs = array('ImageManager.ImageManager');
 
   public $hasAndBelongsToMany = array(
     'Image' => array(
@@ -15,10 +16,12 @@ CakePHP-ImageManager-Plugin
       'joinTable' => 'images_relations',
       'conditions' => array('foreign_name' => 'Page')
     ),
-  );`
+  );
+  `
 
 ### In your admin layout
-`echo $this->Html->script(Router::url(array(
+`
+echo $this->Html->script(Router::url(array(
   'controller'=> 'images',
   'action' => 'scripts',
   'full_base' => true,
@@ -27,4 +30,5 @@ CakePHP-ImageManager-Plugin
 )));
 echo $this->Html->script('ImageManager.image_manager');
 echo $this->Html->script('ImageManager.jquery.drag.drop');
-echo $this->Html->css('ImageManager.image_manager');`
+echo $this->Html->css('ImageManager.image_manager');
+`
