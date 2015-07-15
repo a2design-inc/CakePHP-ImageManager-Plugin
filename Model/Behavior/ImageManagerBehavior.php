@@ -23,14 +23,14 @@ class ImageManagerBehavior extends ModelBehavior {
         $this->settings[$model->alias] = array_merge($this->settings[$model->alias], (array) $config);
     }
 
-    public function beforeSave(Model $model) {
+    public function beforeSave(Model $model, $options = array()) {
         if(!empty($model->data['Image'])) {
             $this->images = $model->data['Image']['Image'];
             unset($model->data['Image']);
         }
     }
 
-    public function afterSave(Model $model) {
+    public function afterSave(Model $model, $created, $options = array()) {
         if($this->images) {
             $this->relations = new ImagesRelation();
 

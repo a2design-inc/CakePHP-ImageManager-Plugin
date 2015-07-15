@@ -12,7 +12,7 @@ class Image extends ImageManagerAppModel {
 
     var $inserted_ids = array();
 
-    function afterSave($created) {
+    function afterSave($created, $options = array()) {
         if($created) {
             $this->inserted_ids[] = $this->getInsertID();
         }
