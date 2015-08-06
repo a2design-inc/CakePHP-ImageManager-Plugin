@@ -4,7 +4,7 @@
 <div class="control-group">
     <div class="controls">
         <button <?php echo ($limit) ? 'data-limit="' . $limit . '"' : ''; ?> class="btn js-admin_get_image_manager">Add Image</button>
-        <ul class="images-container thumbnails js-admin_images_container">
+        <ul class="top10 images-container thumbnails js-admin_images_container">
             <?php
                 echo $this->Form->hidden('Image.Image._', array(
                     'value' => '',
@@ -24,3 +24,4 @@
         </ul>
     </div>
 </div>
+

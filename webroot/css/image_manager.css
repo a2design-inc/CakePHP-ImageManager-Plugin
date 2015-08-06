@@ -1,7 +1,7 @@
 .thumbnail {
     position: relative;
     width: 100px;
-    margin-right: 20px;
+    margin-right: 5px;
     cursor: pointer;
 }
 
@@ -71,8 +71,11 @@
     box-shadow: 0 0 10px #56B4EF;
 }
 
-
+.images-container{
+    padding: 0;
+}
 
 .images-container .inserted .icon-edit {
     display: none;
+
 }
