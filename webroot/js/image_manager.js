@@ -16,14 +16,18 @@ var image_manager = {
     },
     modal: function() {
         return $('' +
-            '<div class="js-admin_image_manager modal hide fade">' +
+            '<div class="js-admin_image_manager modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+            '<div class="modal-dialog" role="document">' +
+            '<div class="modal-content">' +
             '<div class="modal-header">' +
-            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-            '<h3>Choose an image</h3>' +
+            '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+            '<h4 class="modal-title" id="myModalLabel">Choose an Image</h4>' +
             '</div>' +
             '<div class="modal-body"></div>' +
-            '</div>' +
+            ' <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+            '</div> </div> </div> </div>' +
             '');
+
     },
     current_initializer: null,
     current_target: null,
@@ -38,7 +42,6 @@ var image_manager = {
 
         $(document).on('click', '.js-admin_image_manager .js-admin_image', function () {
             var $thumb = $(this);
-
             var $selected = image_manager.thumb($thumb);
 
             image_manager.current_target.append($selected);
