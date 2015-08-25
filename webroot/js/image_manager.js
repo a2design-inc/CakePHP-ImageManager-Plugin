@@ -5,16 +5,16 @@ $(function () {
 });
 
 var image_manager = {
-    add_button: function() {
+    add_button: function () {
         return $('<button class="btn js-admin_get_image_manager">Add Image</button>');
     },
-    thumb: function($thumb) {
+    thumb: function ($thumb) {
         var $insertedThumb = $thumb.clone();
         var id = $insertedThumb.data('id');
         $insertedThumb.addClass('inserted');
         return $insertedThumb;
     },
-    modal: function() {
+    modal: function () {
         return $('' +
             '<div class="js-admin_image_manager modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
             '<div class="modal-dialog" role="document">' +
@@ -31,6 +31,7 @@ var image_manager = {
     },
     current_initializer: null,
     current_target: null,
+    limit: null,
     current_manager: null,
     curr_number: null,
     init: function () {
@@ -44,11 +45,20 @@ var image_manager = {
             var $thumb = $(this);
             var $selected = image_manager.thumb($thumb);
 
+            if (image_manager.limit == 1) {
+                image_manager.current_initializer.hide();
+                var fieldId = "#"+ image_manager.current_initializer.data('field-id');
+                $(fieldId).val($thumb.data('id'));
+                $selected.find('input').remove();
+            }
+
             image_manager.current_target.append($selected);
+
+            image_manager.current_manager.modal('hide');
         });
     },
     get_manager: function () {
-        if(image_manager.current_manager != null) {
+        if (image_manager.current_manager != null) {
             image_manager.current_manager.modal('show');
             return;
         }
@@ -70,6 +80,7 @@ var image_manager = {
         $(document).on('click', '.js-admin_get_image_manager', function () {
             image_manager.current_initializer = $(this);
             image_manager.current_target = $(this).next();
+            image_manager.limit = $(this).data('limit');
 
             image_manager.get_manager();
             return false;
@@ -78,13 +89,18 @@ var image_manager = {
         $(document).on('click', '.js-admin_image_delete', function () {
             var url = $(this).attr('href');
             var $thumb = $(this).closest('.js-admin_image');
+            image_manager.current_initializer = $(this).closest('.controls').find(".js-admin_get_image_manager");
+            var fieldId = "#"+ image_manager.current_initializer.data('field-id');
 
-            if($thumb.hasClass('disabled')) {
+            if ($thumb.hasClass('disabled')) {
                 return false;
             }
 
-            if($thumb.hasClass('inserted')) {
+            if ($thumb.hasClass('inserted')) {
+                image_manager.current_initializer.show();
+                $(fieldId).val('');
                 $thumb.remove();
+
                 return false;
             }
 
@@ -113,8 +129,9 @@ var dropUploadDefaults = {
     uploadUrl: imagesUrlBase + '/add',
     uploaded: function (data) {
         $('.js-image_manager_images_list').prepend($(data));
+        image_manager.add_listeners();
     },
-    uploadFailed: function(data) {
+    uploadFailed: function (data) {
         alert('This file cannot be uploaded');
     },
     keepInputName: true

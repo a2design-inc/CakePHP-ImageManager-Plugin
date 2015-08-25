@@ -9,6 +9,14 @@ class ImagesController extends ImageManagerAppController {
 
     public $uses = array('ImageManager.Image');
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+
+        $this->Auth->allow(array(
+            'scripts',
+        ));
+    }
+
     /**
      * admin_index method
      *

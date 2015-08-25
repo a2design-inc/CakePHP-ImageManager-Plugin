@@ -1,14 +1,10 @@
 <?php
     $limit = (empty($limit)) ? false : $limit;
-    $fieldName = '';
 ?>
 <div class="control-group">
     <div class="controls">
-        <button <?php echo ($limit) ? 'data-limit="' . $limit . '"' : ''; ?> class="btn js-admin_get_image_manager"><?php echo __('Add Image');?></button>
+        <button <?php echo ($limit) ? 'data-limit="' . $limit . '"' : ''; ?> class="btn js-admin_get_image_manager">Add Image</button>
         <ul class="top10 images-container thumbnails js-admin_images_container">
-            <?php  echo $this->Form->hidden('Image.Image.', array(
-                'name' => 'data[Image][Image][]'
-            )); ?>
             <?php if(!empty($this->data['Image'])): ?>
             <?php foreach($this->data['Image'] as $n => $image): ?>
                 <?php

@@ -77,5 +77,21 @@
 
 .images-container .inserted .icon-edit {
     display: none;
+}
+
+.js-image_manager_images_list{
+    height: 500px;
+    overflow-y: auto;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Important part */
+.js-admin_image_manager .modal-dialog{
+    /*overflow-y: initial !important;*/
+    width: 575px !important;
+}
+
+.js-image_manager-container{
 
 }

@@ -40,7 +40,24 @@ class Image extends ImageManagerAppModel {
      * @var array
      */
 
-    public $actsAs = array(
+    public function __construct($id = false, $table = null, $ds = null) {
+
+        $options = Configure::read('ImageManager.Upload');
+
+        $this->actsAs['ImageManager.Upload'] =
+            Hash::merge(
+                $this->actsAs_default['ImageManager.Upload'],
+                $options
+            );
+
+        if(!empty($options['filename']['thumbnailSizes'])){
+            $this->actsAs['ImageManager.Upload']['filename']['thumbnailSizes'] = $options['filename']['thumbnailSizes'];
+        }
+
+        parent::__construct($id, $table, $ds);
+    }
+
+    public $actsAs_default = array(
         'ImageManager.Upload' => array(
             'filename' => array(
                 'path' =>          '{ROOT}webroot{DS}files{DS}images',
@@ -53,9 +70,10 @@ class Image extends ImageManagerAppModel {
                 'thumbnailQuality' => 100,
                 'thumbnailSizes' => array(
                     'small' => '500x500',
-                    'thumb' => '200x200',
-                    'big' => '800x800',
+                    'thumb' => '253x158',
+                    'big' => '800l',
                     'nano' => '100x100',
+                    'pico' => '70x70',
                 )
             ),
         )
@@ -67,12 +85,30 @@ class Image extends ImageManagerAppModel {
      *
      * @var array
      */
-    public $virtualFields = array(
-        'small' => 'CONCAT("files/images/thumbs/small_", Image.filename)',
-        'thumb' => 'CONCAT("files/images/thumbs/thumb_", Image.filename)',
-        'big' => 'CONCAT("files/images/thumbs/big_", Image.filename)',
-        'nano' => 'CONCAT("files/images/thumbs/nano_", Image.filename)',
-        'fullsize' => 'CONCAT("files/images/", Image.filename)',
-    );
 
+
+    public function afterFind($results, $primary = false) {
+        // Bind size
+        foreach ($results as $key => $val) {
+            foreach($this->actsAs['ImageManager.Upload']['filename']['thumbnailSizes'] as $name_size=>$size){
+                $results[$key][$this->alias][$name_size] = "files/images/thumbs/".$name_size."_".$results[$key][$this->alias]['filename'];
+            }
+            $results[$key][$this->alias]['fullsize'] = "files/images/".$results[$key][$this->alias]['filename'];
+        }
+
+        return $results;
+    }
+
+
+    public function attachInfo($id){
+        $images = $this->find('all', array(
+            'conditions' => array(
+                'id' => $id,
+            )
+        ));
+
+        $result = Hash::combine($images, '{n}.Image.id', '{n}.Image');
+
+        return $result;
+    }
 }

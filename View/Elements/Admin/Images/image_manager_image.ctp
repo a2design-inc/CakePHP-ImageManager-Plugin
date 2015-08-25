@@ -1,3 +1,6 @@
+<?php
+$input = isset($input)?$input:true;
+?>
 <div class="thumbnail col-xs-2 js-admin_image" data-id="<?php echo $image['Image']['id']; ?>">
 
         <ul class="thumbnail-controls">
@@ -44,9 +47,11 @@
             ));
         ?>
     <?php
-    echo $this->Form->hidden('Image.Image.' . $image['Image']['id'], array(
-        'value' => $image['Image']['id'],
-        'name' => 'data[Image][Image][]'
-    ));
+    if($input) {
+        echo $this->Form->hidden('Image.Image.' . $image['Image']['id'], array(
+            'value' => $image['Image']['id'],
+            'name' => 'data[Image][Image][]'
+        ));
+    }
     ?>
 </div>
