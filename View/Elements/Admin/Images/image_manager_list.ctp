@@ -1,4 +1,4 @@
 <?php
-    foreach($images as $image) {
-        echo $this->element('Admin/Images/image_manager_image', array('image' => $image));
-    }
+foreach ($images as $image) {
+    echo $this->ImageManager->image_thumb($image['Image']);
+}

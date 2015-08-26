@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class ImagesController extends ImageManagerAppController {
 
     public $uses = array('ImageManager.Image');
+    public $helper = array('ImageManager');
 
     public function beforeFilter(){
         parent::beforeFilter();
