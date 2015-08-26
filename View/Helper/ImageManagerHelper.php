@@ -81,7 +81,7 @@ class ImageManagerHelper extends FormHelper {
         }
 
         $output .= '</ul></div></div>';
-        $output.= '</div> </div>';
+        $output .= '</div> </div>';
 
         return $output;
     }
