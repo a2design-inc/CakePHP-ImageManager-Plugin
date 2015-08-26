@@ -35,18 +35,18 @@ CakePHP-ImageManager-Plugin
 
 ### In your config
 
-Configure::write(
-    array (
-        'ImageManager.Upload' => array(
-            'filename' => array(
-                'thumbnailSizes' => array(
-                    'small' => '500x500',
-                    'thumb' => '253x158',
-                    'big' => '800l',
-                    'nano' => '100x100',
-                    'pico' => '70x70',
+        Configure::write(
+            array (
+                'ImageManager.Upload' => array(
+                    'filename' => array(
+                        'thumbnailSizes' => array(
+                            'small' => '500x500',
+                            'thumb' => '253x158',
+                            'big' => '800l',
+                            'nano' => '100x100',
+                            'pico' => '70x70',
+                        )
+                    ),
                 )
-            ),
-        )
-    )
-);
+            )
+        );
