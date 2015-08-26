@@ -8,15 +8,26 @@ CakePHP-ImageManager-Plugin
 ### In your model
 
         public $actsAs = array('ImageManager.ImageManager');
+
+        // Gallery
         public $hasAndBelongsToMany = array(
                 'Image' => array(
-                        'className' => 'ImageManager.Image',
-                        'foreignKey' => 'foreign_id',
-                        'associationForeignKey' => 'image_id',
-                        'joinTable' => 'images_relations',
-                        'conditions' => array('foreign_name' => 'Page')
+                    'className' => 'ImageManager.Image',
+                    'foreignKey' => 'foreign_id',
+                    'associationForeignKey' => 'image_id',
+                    'joinTable' => 'images_relations',
+                    'conditions' => array('foreign_name' => 'Page')
                 ),
-        );
+            );
+
+        // One image
+        // Name of association should by 'ModelField'
+        public $belongsTo = array(
+                'PageImageId' => array(
+                    'className' => 'ImageManager.Image',
+                    'foreignKey' => 'image_id',
+                )
+            );
 
 
 ### In your admin layout
@@ -33,7 +44,7 @@ CakePHP-ImageManager-Plugin
         echo $this->Html->css('ImageManager.image_manager');
 
 
-### In your config
+### In your config file
 
         Configure::write(
             array (
@@ -50,6 +61,13 @@ CakePHP-ImageManager-Plugin
                 )
             )
         );
+
+
+### In your controller
+
+        public $helpers = array(
+                'ImageManager.ImageManager'
+            );
 
 
 ### Run MySQL script
@@ -72,4 +90,12 @@ CakePHP-ImageManager-Plugin
               `foreign_name` varchar(255) NOT NULL,
               `image_id` int(11) unsigned NOT NULL,
               PRIMARY KEY (`id`)
-        ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+        ) ENGINE=MyISA
+
+
+### Usage
+    // One image
+    <?php echo $this->ImageManager->image('Page.image_id'); ?>
+
+    // Gallary
+    <?php echo $this->ImageManager->gallery('Gallery'); ?>
