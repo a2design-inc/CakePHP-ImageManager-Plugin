@@ -1,6 +1,6 @@
 {
     "name": "a2design-inc/cakephp-image-manager",
-    "description": "CakePHP Image Manager plugin",
+    "description": "Twilio CakePHP plugin",
     "license": "MIT",
     "authors": [
         {
@@ -12,8 +12,9 @@
             "name": "Vladislav Bezverkhiy",
             "email": "bezverhiy@a2design.biz"
         },
-        "name": "Vyacheslav Gordeev",
-        "email": "gordeev@a2design.biz"
+        {
+            "name": "Vyacheslav Gordeev",
+            "email": "gordeev@a2design.biz"
         }
     ],
     "type": "cakephp-plugin",
