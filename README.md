@@ -30,7 +30,7 @@ CakePHP-ImageManager-Plugin
             );
 
 
-### In your admin layout
+### In your layout
 
         echo $this->Html->script(Router::url(array(
                 'controller'=> 'images',
