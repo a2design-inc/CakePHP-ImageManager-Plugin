@@ -65,7 +65,7 @@ CakePHP-ImageManager-Plugin
               `site_id` int(11) unsigned DEFAULT NULL,
               PRIMARY KEY (`id`)
         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-        
+
         CREATE TABLE `images_relations` (
               `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
               `foreign_id` int(11) unsigned NOT NULL,
