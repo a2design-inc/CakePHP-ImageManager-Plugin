@@ -50,3 +50,26 @@ CakePHP-ImageManager-Plugin
                 )
             )
         );
+
+
+### Run MySQL script
+
+        CREATE TABLE `images` (
+              `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+              `foreign_key` int(10) unsigned DEFAULT NULL,
+              `model` varchar(255) NOT NULL DEFAULT '',
+              `filename` varchar(255) NOT NULL DEFAULT '',
+              `dir` int(11) unsigned DEFAULT NULL,
+              `order` int(11) unsigned DEFAULT NULL,
+              `is_slider` int(2) unsigned DEFAULT NULL,
+              `site_id` int(11) unsigned DEFAULT NULL,
+              PRIMARY KEY (`id`)
+        ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+        
+        CREATE TABLE `images_relations` (
+              `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+              `foreign_id` int(11) unsigned NOT NULL,
+              `foreign_name` varchar(255) NOT NULL,
+              `image_id` int(11) unsigned NOT NULL,
+              PRIMARY KEY (`id`)
+        ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
