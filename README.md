@@ -90,7 +90,7 @@ CakePHP-ImageManager-Plugin
               `foreign_name` varchar(255) NOT NULL,
               `image_id` int(11) unsigned NOT NULL,
               PRIMARY KEY (`id`)
-        ) ENGINE=MyISA
+        ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 ### Usage
